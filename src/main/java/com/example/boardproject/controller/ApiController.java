@@ -1,9 +1,9 @@
-package com.example.syworksboardassignment.controller;
+package com.example.boardproject.controller;
 
-import com.example.syworksboardassignment.entity.User;
-import com.example.syworksboardassignment.service.BoardLikeService;
-import com.example.syworksboardassignment.service.CommentService;
-import com.example.syworksboardassignment.service.UserService;
+import com.example.boardproject.entity.User;
+import com.example.boardproject.service.BoardLikeService;
+import com.example.boardproject.service.CommentService;
+import com.example.boardproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.example.syworksboardassignment.entity;
+package com.example.boardproject.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,23 +8,22 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"board_id", "user_id"}))
 @Getter @Setter
 @NoArgsConstructor
-public class User {
+public class BoardLike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
 
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String email;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     private LocalDateTime createdDate;
 

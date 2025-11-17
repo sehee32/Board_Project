@@ -1,11 +1,11 @@
-package com.example.syworksboardassignment.controller;
+package com.example.boardproject.controller;
 
-import com.example.syworksboardassignment.entity.Board;
-import com.example.syworksboardassignment.entity.Comment;
-import com.example.syworksboardassignment.entity.User;
-import com.example.syworksboardassignment.service.BoardService;
-import com.example.syworksboardassignment.service.CommentService;
-import com.example.syworksboardassignment.service.UserService;
+import com.example.boardproject.entity.Board;
+import com.example.boardproject.entity.Comment;
+import com.example.boardproject.entity.User;
+import com.example.boardproject.service.BoardService;
+import com.example.boardproject.service.CommentService;
+import com.example.boardproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;

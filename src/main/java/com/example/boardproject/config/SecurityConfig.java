@@ -1,4 +1,4 @@
-package com.example.syworksboardassignment.config;
+package com.example.boardproject.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.example.syworksboardassignment.entity;
+package com.example.boardproject.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,9 +1,9 @@
-package com.example.syworksboardassignment.service;
+package com.example.boardproject.service;
 
-import com.example.syworksboardassignment.entity.Board;
-import com.example.syworksboardassignment.entity.User;
-import com.example.syworksboardassignment.repository.BoardRepository;
-import com.example.syworksboardassignment.repository.BoardLikeRepository;
+import com.example.boardproject.entity.Board;
+import com.example.boardproject.entity.User;
+import com.example.boardproject.repository.BoardRepository;
+import com.example.boardproject.repository.BoardLikeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

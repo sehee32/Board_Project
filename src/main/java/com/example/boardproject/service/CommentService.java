@@ -1,10 +1,10 @@
-package com.example.syworksboardassignment.service;
+package com.example.boardproject.service;
 
-import com.example.syworksboardassignment.entity.Board;
-import com.example.syworksboardassignment.entity.Comment;
-import com.example.syworksboardassignment.entity.User;
-import com.example.syworksboardassignment.repository.BoardRepository;
-import com.example.syworksboardassignment.repository.CommentRepository;
+import com.example.boardproject.entity.Board;
+import com.example.boardproject.entity.Comment;
+import com.example.boardproject.entity.User;
+import com.example.boardproject.repository.BoardRepository;
+import com.example.boardproject.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

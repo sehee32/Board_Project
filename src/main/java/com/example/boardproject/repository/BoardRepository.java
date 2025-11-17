@@ -1,6 +1,6 @@
-package com.example.syworksboardassignment.repository;
+package com.example.boardproject.repository;
 
-import com.example.syworksboardassignment.entity.Board;
+import com.example.boardproject.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

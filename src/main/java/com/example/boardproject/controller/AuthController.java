@@ -1,6 +1,6 @@
-package com.example.syworksboardassignment.controller;
+package com.example.boardproject.controller;
 
-import com.example.syworksboardassignment.service.UserService;
+import com.example.boardproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

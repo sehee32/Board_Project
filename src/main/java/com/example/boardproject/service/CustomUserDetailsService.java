@@ -1,7 +1,7 @@
-package com.example.syworksboardassignment.service;
+package com.example.boardproject.service;
 
-import com.example.syworksboardassignment.entity.User;
-import com.example.syworksboardassignment.repository.UserRepository;
+import com.example.boardproject.entity.User;
+import com.example.boardproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
