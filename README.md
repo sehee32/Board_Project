@@ -247,6 +247,12 @@ public Page<Board> getList(int page, int size) {
 
 ### 좋아요
 
+![다른사람게시글좋아요](https://github.com/user-attachments/assets/e679f7a3-9afd-4412-8adc-ad07e960da8d)
+
+<img width="946" height="490" alt="게시글좋아요db" src="https://github.com/user-attachments/assets/84932617-eb35-408f-b127-6c0c92efd389" />
+좋아요 DB 저장
+
+
 #### 중복 방지
 - 복합 유니크 제약조건
 ```
