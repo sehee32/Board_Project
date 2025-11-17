@@ -25,6 +25,9 @@ Password: (공백)
 
 <img width="1740" height="662" alt="board_erd" src="https://github.com/user-attachments/assets/a013a54e-3794-4b87-b817-f6b341ee0782" />
 
+<img width="1740" height="662" alt="board_erd" src="https://github.com/user-attachments/assets/4daef674-3e8a-49d0-b76c-c8831680ea95" />
+
+
 ### User
 - 회원 정보 저장
 - username은 UNIQUE 제약조건
