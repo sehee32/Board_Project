@@ -147,8 +147,20 @@ Password: (공백)
 ---
 
 ### 게시글
+![게시판글등록및좋아요](https://github.com/user-attachments/assets/ed79b32f-c78a-4fe8-945f-afbfa680109f)
+게시글 등록 & 좋아요
+
+![다른계정게시글작성](https://github.com/user-attachments/assets/b26307da-69fe-4ce8-b077-e3d90a6caa90)
+다른 계정으로 게시글 작성
+
+<img width="1222" height="937" alt="게시글db저장" src="https://github.com/user-attachments/assets/693c610b-2100-4976-b3b8-234ff6851c0c" />
+게시글 DB 저장
+
 
 #### 페이징
+
+![페이징](https://github.com/user-attachments/assets/83cabcb7-1895-4c04-bb85-2e811414449f)
+
 - Spring Data JPA Pageable 사용
 - 사용자한테 size를 입력받아 size만큼씩 표시
 ```
@@ -166,6 +178,9 @@ public Page<Board> getList(int page, int size) {
 ```
 
 #### 권한
+
+![본인게시글만수정삭제버튼](https://github.com/user-attachments/assets/19d78a82-507d-4bd7-a115-b397caaec730)
+
 - 작성자 본인만 수정/삭제 가능
 ```
 @Transactional
@@ -191,6 +206,19 @@ public Page<Board> getList(int page, int size) {
 ---
 
 ### 댓글
+
+![댓글및답글달기](https://github.com/user-attachments/assets/1819c0eb-23f1-4491-bfb9-8828828fa0b8)
+댓글 작성
+
+![댓글수정](https://github.com/user-attachments/assets/f03f149c-0d24-4133-aac7-9943aaf309d6)
+댓글 수정
+
+![다른사람댓글](https://github.com/user-attachments/assets/4aaa827c-a18e-4ddb-b812-1bf33b95a9e0)
+다른 계정으로 댓글 작성
+
+<img width="947" height="607" alt="댓글db" src="https://github.com/user-attachments/assets/7189efc0-4b8c-47cd-b691-48b3da4a476a" />
+댓글 DB 저장
+
 
 - 자기참조 구조 ( Comment 엔티티 parent_id로 구현 )
 - parentId가 null이면 댓글, parentId가 있으면 대댓글
