@@ -86,13 +86,27 @@ Password: (공백)
 
 ## 구현 기능
 
+### 인증 (Spring Security) (회원가입 및 로그인)
 ![회원가입성공](https://github.com/user-attachments/assets/143c5325-10b2-4340-8c24-5a0afcb4ea99)
+회원가입 성공
+
 <img width="1126" height="439" alt="회원db저장성공" src="https://github.com/user-attachments/assets/fec3130e-165b-41c8-a8cf-1d1414c69bd8" />
+회원 DB 저장
+
+
 ![회원가입실패중복](https://github.com/user-attachments/assets/6dcedb4f-1793-4eea-b6cd-f68d50ab5b23)
+회원가입 실패 (중복)
+
+
+![로그인성공](https://github.com/user-attachments/assets/da83dbac-0820-4fb9-af8d-8b49d7ad5936)
+로그인 성공
+
+
+![로그인실패](https://github.com/user-attachments/assets/89b1cbe0-40f8-478e-8945-f5362bb0b40e)
+로그인 실패
 
 
 
-### 인증 (Spring Security)
 
 #### SecurityConfig
 - FormLogin 방식 사용
