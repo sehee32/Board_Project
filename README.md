@@ -1,82 +1,261 @@
 # 게시판 서비스 구현 과제
 
-## 과제 개요
 
-- **주제**: 게시판 서비스 구현
-- **제출 마감**: 2025.10.22
-- **사용 기술**:
-    - **백엔드**: Spring Boot 기반 Java (권장) 또는 Kotlin
-        - Spring MVC + JPA 또는 MyBatis 사용 권장
-    - **프론트엔드**: JSP 또는 Thymeleaf 중 선택
-        - Vue.js 등 프론트엔드 프레임워크를 CDN 방식으로 추가 가능 (단, 프론트/백엔드 분리 불가)
-        - JavaScript, jQuery, Ajax 등 프론트엔드 스크립트는 제한 없이 사용 가능
 
-## 필수 요구사항
+- 작성자: 박세희
 
-아래는 반드시 구현해야 하는 기능들입니다. (* 표시가 있는 항목은 필수 구현 사항입니다.)
+- 이메일: psh19970320@gmail.com
 
-### 1. 회원가입 / 로그인 / 로그아웃
-- *Spring Security(또는 Filter/Interceptor/Session 직접 구현)를 활용해 회원 기능을 구현해 주세요.
-- *로그인한 사용자만 게시글 작성, 좋아요, 댓글 작성 등의 기능을 이용할 수 있습니다.
-- 비밀번호는 BCrypt 등 해시 처리로 보안성을 강화하는 것을 권장합니다.
+- GitHub: https://github.com/sehee32
 
-### 2. 게시글 CRUD (Create, Read, Update, Delete)
-- *로그인한 사용자만 게시글을 작성할 수 있습니다.
-- *작성자 본인만 게시글을 수정하거나 삭제할 수 있도록 권한을 처리해 주세요.
-- *게시글 목록은 페이징 기능을 적용해 한 페이지당 원하는 수의 게시글을 표시해야 합니다.
 
-### 3. 댓글 기능 (대댓글 포함)
-- *게시글 상세 페이지에서 댓글을 작성할 수 있습니다.
-- *대댓글(다른 댓글의 하위 댓글) 기능도 지원해야 합니다.
-- *댓글 작성, 수정, 삭제는 로그인한 사용자 중 작성자 본인만 가능하도록 권한을 설정해 주세요.
 
-### 4. 좋아요 기능
-- *게시글에 ‘좋아요’ 버튼을 추가해 사용자가 좋아요를 누를 수 있도록 구현해 주세요.
-- *이미 좋아요를 누른 사용자는 ‘좋아요 취소’를 할 수 있거나, 중복 좋아요가 불가능하도록 처리해야 합니다.
-- 댓글 좋아요 기능은 선택 사항입니다. 시간이 허락된다면 추가로 구현해 보셔도 좋습니다!
+## 기술 스택
+- Backend: Java, Spring Boot, Spring Security, JPA, H2 db
+  
+- Frontend: Thymeleaf , HTML/CSS , JavaScript
+       
 
-### 5. 권한 및 보안
-- *Spring Security 또는 Filter/Interceptor를 활용해 로그인 및 접근 권한을 제어해 주세요.
-- CSRF 방어, 세션 타임아웃 등 기본적인 보안 설정을 적용하는 것을 권장합니다.
+## 실행 방법
+```
+http://localhost:8080 (애플리케이션 접속)
+```
 
-### 6. DB 설계 및 트랜잭션
-- *ERD를 설계해 주세요. (예: User, Board(Post), Comment, Like 테이블)
-- *게시글 및 댓글의 INSERT/UPDATE 작업 등에 `@Transactional`을 적용해 트랜잭션을 관리해 주세요.
+```
+http://localhost:8080/h2-console (H2 콘솔 접속)
+```
+```
+JDBC URL: jdbc:h2:mem:boarddb
+Username: sa
+Password: (공백)
+```
 
-## 제출 결과물
 
-다음 항목들을 제출해 주셔야 합니다:
-- *정상적으로 동작하는 소스 코드
-- *ERD 설계 문서
-- 기타 추가 문서 (선택 사항)
+## ERD
 
-## 추가 안내
+<img width="1740" height="662" alt="board_erd" src="https://github.com/user-attachments/assets/a013a54e-3794-4b87-b817-f6b341ee0782" />
 
-### 개발 환경
-- **Spring Boot**: 3.x 이상 버전 사용을 권장합니다. Gradle 빌드 도구를 사용해 주세요.
-- **데이터베이스**: H2 Database를 in-memory 모드로 설정해 사용해 주세요.
+### User
+- 회원 정보 저장
+- username은 UNIQUE 제약조건
 
-### 구현 방식
-- 요구사항을 충족한다면 구현 방식에 제한은 없습니다. 서비스가 안정적으로 동작해야 합니다.
-- 필수 요구사항 외에 추가로 구현하고 싶은 기능이나 본인의 강점을 보여줄 수 있는 부분이 있다면 자유롭게 추가해 주셔도 됩니다. 단, 추가 기능도 정상적으로 동작해야 합니다.
+### Board
+- 게시글 정보 저장
+- user_id로 작성자와 연결
 
-### 문서 작성
-- **ERD 설계 문서**: 정해진 양식은 없지만, 가독성 있게 작성해 주세요.
-- 문서는 `README.md` 파일에 기존 내용을 지우고 작성하거나, 별도의 파일로 작성해 프로젝트 루트 경로에 포함시켜 주세요.
-- 기타 추가 문서도 프로젝트 루트 경로에 포함하면 됩니다.
+### Comment
+- 댓글 정보 저장
+- mparent_id로 계층 구조 구현 (자기참조)
+- NULL이면 최상위 댓글, 값이 있으면 대댓글
 
-## 제출 방법 및 주의사항
+### BoardLike
+- 좋아요 정보 저장
+- 복합 UNIQUE(board_id, user_id)로 중복 방지
 
-1. **제출 방법**:
-    - 이 레파지토리를 fork하여 작업을 진행한 후, 마감일까지 원본 레파지토리에 Pull Request(PR)를 요청해 주세요.
-    - PR 요청이 제출로 간주됩니다. 반드시 마감일 내에 PR을 완료해 주세요.
+## API
 
-2. **주의사항**:
-    - 마감일 이후 PR 요청 또는 PR 미제출 시, 과제 미수행으로 간주되어 탈락 처리됩니다.
-    - 레파지토리는 Private으로 제공되며, PR 후 본인이 Merge할 수 있는 권한이 부여되지만 **Merge는 절대 하지 말아 주세요.**
-    - 과제 평가는 통상 1~2주 소요되며, 결과는 개별적으로 안내드릴 예정입니다.
+### 게시글 API
 
-## 문의
-궁금한 점이나 필요한 지원이 있다면, 인사담당자에게 이메일로 연락 주시면 빠르게 확인 후 답변드리겠습니다.
+| Method | URL | 설명 | 인증필요 |
+| --- | --- | --- |--- |  
+| GET | /boards | 게시글 목록 조회 | X | 
+| GET | /boards/{id} | 게시글 상세 조회 | X | 
+| GET | /boards/new | 게시글 작성 폼| O | 
+| POST | /boards/new | 게시글 작성 | O | 
+| GET | /boards/{id}/edit | 게시글 수정 폼| O | 
+| POST | /boards/{id}/edit | 게시글 수정 | O | 
+| POST | /boards/{id}/delete | 게시글 삭제 | O | 
 
-여러분의 멋진 과제 결과를 기대하겠습니다! 최선을 다해 주세요. 감사합니다!
+
+### 좋아요 API
+
+| Method | URL | 설명 | 인증필요 |
+| --- | --- | --- |--- |  
+| POST | /api/boards/{id}/like | 좋아요 토글 | O | 
+
+
+### 댓글 API
+
+| Method | URL | 설명 | 인증필요 |
+| --- | --- | --- |--- |  
+| POST | /api/comments | 댓글 작성 | O | 
+| PUT | /api/comments/{id} | 댓글 수정 | O | 
+| DELETE | /api/comments/{id} | 댓글 삭제 | O | 
+
+
+### 인증 API
+
+| Method | URL | 설명 | 인증필요 |
+| --- | --- | --- |--- |  
+| GET | /login | 로그인 페이지 | X | 
+| POST | /login | 로그인 처리 | X | 
+| GET | /register| 회원가입 페이지 | X | 
+| POST | /register | 회원가입 처리 | X | 
+| POST | /logout | 로그아웃 | O | 
+
+
+## 구현 기능
+
+### 인증 (Spring Security)
+
+#### SecurityConfig
+- FormLogin 방식 사용
+- CSRF 보호 활성화 (CookieCsrfTokenRepository)
+- BCrypt 비밀번호 암호화
+
+```
+@Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .ignoringRequestMatchers("/h2-console/**") 
+                )
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/boards", "/boards/*", "/login", "/register", "/css/**", "/h2-console/**", "/images/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/boards")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/boards")
+                        .permitAll()
+                )
+                .headers(h -> h.frameOptions(f -> f.disable()));
+
+        return http.build();
+    }
+```
+
+#### CustomUserDetailsService
+- Spring Security와 JPA 연동
+- DB에서 사용자 정보 조회
+
+---
+
+### 게시글
+
+#### 페이징
+- Spring Data JPA Pageable 사용
+- 사용자한테 size를 입력받아 size만큼씩 표시
+```
+@GetMapping("/boards")
+    public String list(@RequestParam(defaultValue = "0") int page,
+                       @RequestParam(defaultValue = "10") int size,
+                       Authentication auth, Model model) {
+        Page<Board> boards = boardService.getList(page, size); // 컨트롤러에서 데이터 받음
+
+
+
+public Page<Board> getList(int page, int size) {
+        return boardRepository.findAll(PageRequest.of(page, size));
+    } // Pageable 생성
+```
+
+#### 권한
+- 작성자 본인만 수정/삭제 가능
+```
+@Transactional
+    public void update(Long id, String title, String content, User user) {
+        Board board = boardRepository.findById(id).orElseThrow();
+        if (!board.getWriter().getId().equals(user.getId())) {
+            throw new RuntimeException("권한이 없습니다");
+        }
+        board.setTitle(title);
+        board.setContent(content);
+    }
+
+    @Transactional
+    public void delete(Long id, User user) {
+        Board board = boardRepository.findById(id).orElseThrow();
+        if (!board.getWriter().getId().equals(user.getId())) {
+            throw new RuntimeException("권한이 없습니다");
+        }
+        boardRepository.delete(board);
+    }
+```
+
+---
+
+### 댓글
+
+- 자기참조 구조 ( Comment 엔티티 parent_id로 구현 )
+- parentId가 null이면 댓글, parentId가 있으면 대댓글
+- 최상위 댓글이 삭제되면 자식 댓글도 삭제됨
+- 무한 depth 지원 ( 이 프로젝트에서는 2개까지만 출력되게 했습니다. )
+
+
+```
+ @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private Comment parent;
+
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> children = new ArrayList<>();
+
+```
+
+
+| id | content | parent_id |
+| --- | --- | --- |
+| 1 | 댓글 | NULL (최상위) |
+| 2 | 대댓글 | 1 (댓글의 자식)|
+| 3 | 대대댓글 | 2 (대댓글의 자식)|
+
+---
+
+### 좋아요
+
+#### 중복 방지
+- 복합 유니크 제약조건
+```
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"board_id", "user_id"}))
+```
+
+#### 토글방식
+- 이미 좋아요가 있으면 삭제, 없으면 추가
+- Board 엔티티에 likeCount 저장 (비정규화)
+- COUNT 쿼리 없이 빠르게 조회 가능
+```
+ @Transactional
+    public void toggle(Long boardId, User user) {
+        Board board = boardRepository.findById(boardId).orElseThrow();
+
+        BoardLike like = likeRepository.findByBoardIdAndUserId(boardId, user.getId())
+                .orElse(null);
+
+        if (like != null) {
+            // 좋아요 취소
+            likeRepository.delete(like);
+            board.setLikeCount(board.getLikeCount() - 1);
+        } else {
+            // 좋아요 추가
+            BoardLike newLike = new BoardLike();
+            newLike.setBoard(board);
+            newLike.setUser(user);
+            likeRepository.save(newLike);
+            board.setLikeCount(board.getLikeCount() + 1);
+        }
+    }
+```
+
+---
+
+### AJAX 통신
+
+#### CSRF 토큰 처리
+- 모든 POST/PUT/DELETE 요청에 토큰 포함
+```
+const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+ fetch('/api/comments', {
+            method: 'POST',
+            headers: {
+                [csrfHeader]: csrfToken
+            }
+```
+
