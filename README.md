@@ -1,14 +1,4 @@
-# 게시판 서비스 구현 과제
-
-
-
-- 작성자: 박세희
-
-- 이메일: psh19970320@gmail.com
-
-- GitHub: https://github.com/sehee32
-
-
+# 게시판 서비스 구현
 
 ## 기술 스택
 - Backend: Java, Spring Boot, Spring Security, JPA, H2 db
