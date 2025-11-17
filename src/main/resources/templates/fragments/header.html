@@ -1,0 +1,72 @@
+<header xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <meta charset="UTF-8">
+    <a th:href="@{/}">
+        <img th:src="@{/images/logo.png}" alt="게시판 로고" style="height:40px; object-fit:contain;">
+    </a>
+    <nav>
+        <span sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}">로그인</a>
+            <a th:href="@{/register}">회원가입</a>
+        </span>
+
+        <span sec:authorize="isAuthenticated()">
+            <span sec:authentication="name">사용자</span>님
+            <form th:action="@{/logout}" method="post" style="display:inline">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <button type="submit" class="logout-button">
+                    로그아웃
+                </button>
+            </form>
+        </span>
+    </nav>
+
+    <style>
+        body {
+            font-family: 'Noto Sans', 'Pretendard', Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #fff;
+            color: #333;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            z-index: 1000;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            font-size: 22px;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        header nav a, header nav button.logout-button {
+            color: #333;
+            text-decoration: none;
+            margin-left: 18px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        header nav a:hover, header nav button.logout-button:hover {
+            color: #c81d25;
+        }
+    </style>
+</header>

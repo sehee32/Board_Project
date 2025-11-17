@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>syworks_board</title>
+    <style>
+        body {
+            font-family: 'Noto Sans', 'Pretendard', Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 50px auto 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-top: 120px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            border-left: 5px solid #c81d25;
+            padding-left: 10px;
+            color: #333;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eaeaea;
+            color: #333;
+            font-weight: 600;
+            border-bottom: 2px solid #dcdcdc;
+        }
+
+        td {
+            border-bottom: 1px solid #eaeaea;
+            color: #333;
+        }
+
+        tr:hover td {
+            background-color: #f9f9f9;
+        }
+
+        td a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            background-color: #c81d25;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background-color: #9e151d;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5%;
+            gap: 6px;
+        }
+
+        .pagination a {
+            padding: 8px 12px;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .pagination a:hover:not(.disabled) {
+            background-color: #c81d25;
+            color: #fff;
+            border-color: #c81d25;
+        }
+
+        .pagination .active {
+            background-color: #c81d25;
+            color: #fff;
+            border-color: #c81d25;
+        }
+
+        .pagination .disabled {
+            color: #9ca3af;
+            cursor: not-allowed;
+            border-color: #e5e5e5;
+            background-color: #f4f4f4;
+        }
+
+        .btn-write {
+            margin-top: 30px;
+            text-align: right;
+        }
+
+        .page-size-container {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 14px;
+            margin-left: 80%;
+        }
+
+        .page-size-container label {
+            margin-right: 8px;
+        }
+
+        .page-size-select {
+            padding: 6px 10px;
+            border-radius: 5px;
+            border: 1px solid #dcdcdc;
+            background-color: #fff;
+            font-size: 14px;
+            color: #333;
+            transition: all 0.2s ease;
+        }
+
+        .page-size-select:hover {
+            border-color: #c81d25;
+        }
+
+        .page-size-select:focus {
+            outline: none;
+            border-color: #c81d25;
+            box-shadow: 0 0 0 2px rgba(200,29,37,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <h2>게시글 목록</h2>
+
+    <div class="page-size-container">
+        <label for="pageSize">페이지당 게시글 수: </label>
+        <select id="pageSize" class="page-size-select" onchange="changePageSize(this.value)">
+            <option th:value="5" th:selected="${boards.size == 5}">5</option>
+            <option th:value="10" th:selected="${boards.size == 10}">10</option>
+            <option th:value="20" th:selected="${boards.size == 20}">20</option>
+            <option th:value="50" th:selected="${boards.size == 50}">50</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${boards.content}">
+            <td th:text="${board.id}">1</td>
+            <td>
+                <a th:href="@{'/boards/' + ${board.id}}" th:text="${board.title}">게시글 제목</a>
+            </td>
+            <td th:text="${board.writer.username}">작성자</td>
+            <td th:text="${board.likeCount}">0</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="pagination" th:if="${boards.totalPages > 0}">
+        <a th:each="i : ${#numbers.sequence(0, boards.totalPages - 1)}"
+           th:if="${i >= boards.number - 2 && i <= boards.number + 2}"
+           th:href="@{/boards(page=${i}, size=${boards.size})}"
+           th:text="${i + 1}"
+           th:classappend="${i == boards.number} ? 'active'">1</a>
+    </div>
+
+
+    <div class="btn-write" sec:authorize="isAuthenticated()">
+        <a th:href="@{/boards/new}" class="btn">글쓰기</a>
+    </div>
+</div>
+
+<script>
+    function changePageSize(size) {
+        window.location.href = `/boards?page=0&size=${size}`;
+    }
+</script>
+
+</body>
+</html>
