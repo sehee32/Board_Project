@@ -91,6 +91,7 @@ Password: (공백)
 회원가입 성공
 
 <img width="1126" height="439" alt="회원db저장성공" src="https://github.com/user-attachments/assets/fec3130e-165b-41c8-a8cf-1d1414c69bd8" />
+
 회원 DB 저장
 
 
@@ -154,6 +155,7 @@ Password: (공백)
 다른 계정으로 게시글 작성
 
 <img width="1222" height="937" alt="게시글db저장" src="https://github.com/user-attachments/assets/693c610b-2100-4976-b3b8-234ff6851c0c" />
+
 게시글 DB 저장
 
 
@@ -217,6 +219,7 @@ public Page<Board> getList(int page, int size) {
 다른 계정으로 댓글 작성
 
 <img width="947" height="607" alt="댓글db" src="https://github.com/user-attachments/assets/7189efc0-4b8c-47cd-b691-48b3da4a476a" />
+
 댓글 DB 저장
 
 
@@ -250,6 +253,7 @@ public Page<Board> getList(int page, int size) {
 ![다른사람게시글좋아요](https://github.com/user-attachments/assets/e679f7a3-9afd-4412-8adc-ad07e960da8d)
 
 <img width="946" height="490" alt="게시글좋아요db" src="https://github.com/user-attachments/assets/84932617-eb35-408f-b127-6c0c92efd389" />
+
 좋아요 DB 저장
 
 
