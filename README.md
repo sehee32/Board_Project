@@ -21,6 +21,21 @@ Password: (공백)
 ```
 
 
+## QA Testing
+
+- 회원가입 / 로그인 인증 테스트
+- Spring Security 권한 검증
+- 게시글 CRUD 테스트
+- 댓글 및 대댓글 계층 구조 테스트
+- 좋아요 토글 및 중복 방지 테스트
+- CSRF 보안 검증
+- H2 DB 데이터 저장 확인 테스트
+
+📄 테스트케이스 문서:
+- Board_TC.xlsx
+
+
+
 ## ERD
 
 <img width="1740" height="662" alt="board_erd" src="https://github.com/user-attachments/assets/4daef674-3e8a-49d0-b76c-c8831680ea95" />
